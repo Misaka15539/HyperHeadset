@@ -16,7 +16,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build Windows CLI
-        run: cargo build --release --bin hyper_headset_cli
+        run: cargo build --release --bin hyper_headset_cli --features eq-editor
 
       - name: Upload Windows CLI
         uses: actions/upload-artifact@v4
