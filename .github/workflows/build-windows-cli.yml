@@ -1,0 +1,27 @@
+
+name: Build Windows CLI Artifact
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Build Windows CLI
+        run: cargo build --release --bin hyper_headset_cli
+
+      - name: Upload Windows CLI
+        uses: actions/upload-artifact@v4
+        with:
+          name: hyper_headset_cli-windows-main
+          path: target/release/hyper_headset_cli.exe
+          if-no-files-found: error
+          retention-days: 30
